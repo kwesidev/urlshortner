@@ -8,8 +8,8 @@ $original="";
 
 //generate code
 function generate_code(){
-  
-// characters and strings array
+	
+//an array of alphabets and some characters
 $alpha=array_merge(range('A','Z'),range('a','z'),array('xx_p','GY_','q_po_lx'));
 $code=$alpha[mt_rand(0,count($alpha)-1)].mt_rand(100,9000).substr((string)time(),-1,3);
 return($code);
@@ -28,19 +28,47 @@ return(false);
 
 
 
+function checkcon($url){
+	try{
+  $fp=fopen($url,"r");
+  
+	if($fp) 
+	return true;
+	}
+	catch(Exception $e){
+		
+    
+  	
+	 return false;
+	}
+
+	
+
+	
+}
+
+
 if(isset($_GET['act'])) {
 
 
-$long=urldecode(trim($_GET['longurl']));
+$long=urldecode($_GET['longurl']);
 if(urlcheck($long)){
+	
 $query="SELECT * FROM url_short WHERE longurl='$long'";
+
+
+
 if(mysql_num_rows(mysql_query($query,$conn))==1){
      $get_code=mysql_fetch_array(mysql_query($query,$conn));
 	 
-     $message="http://yourshorturlsite.whatever/$get_code[code]";
+     $message="http://kwesh.w/$get_code[code]";
 	  	  	
 }
+
+
 else
+if(checkcon($long)){
+
 {
 
 $code=generate_code(); //generate code 
@@ -66,8 +94,18 @@ mysql_close($conn);
 
 }
 
+
+else
+$message="Website does not exists";
+
+}
+
+
+
 else
 $message="Url is invalid";
+
+
 }
 ?>
 
