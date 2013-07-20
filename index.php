@@ -35,7 +35,7 @@ function checkcon($url){
 
   $fp=@fopen($url,"r"); 
   
-	if($fp || @fsockopen(gethostname($url),80,$err,$err2,30)) 
+	if($fp) 
 	return true;
 	else
 	
