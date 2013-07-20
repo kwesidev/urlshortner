@@ -19,7 +19,7 @@ return($code);
 
 function urlcheck($url){
 //checks for valid link
-if(preg_match("/^http:\/\/(.*)/",$url)) 
+if(preg_match("/^http|https:\/\/(.*)/",$url)) 
 return(true);
 else
 return(false);
@@ -35,7 +35,7 @@ function checkcon($url){
 
   $fp=@fopen($url,"r"); 
   
-	if($fp) 
+	if($fp || @fsockopen(gethostname($url),80,$err,$err2,30)) 
 	return true;
 	else
 	
@@ -58,7 +58,7 @@ $query="SELECT * FROM url_short WHERE longurl='$long'";
 if(mysql_num_rows(mysql_query($query,$conn))==1){
      $get_code=mysql_fetch_array(mysql_query($query,$conn));
 	 
-     $message="http://yourshorturlsite/$get_code[code]";
+     $message="http://yourshorturlsite.whatever/$get_code[code]";
 	  	  	
 }
 
