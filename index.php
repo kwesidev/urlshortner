@@ -3,6 +3,7 @@
 
 
 include("database.php");
+$url_site="" //yoururlshortner domain e.g shrt.kl
 $message="";
 $original="";
 
@@ -10,8 +11,8 @@ $original="";
 function generate_code(){
 	
 //an array of alphabets and some characters
-$alpha=array_merge(range('A','Z'),range('a','z'),array('xx_p','GY_','q_po_lx'));
-$code=$alpha[mt_rand(0,count($alpha)-1)].mt_rand(100,9000).substr((string)time(),-1,3);
+$alpha=array_merge(range('a','z'),array('xx_p','GY_','q_po_lx'));
+$code=$alpha[mt_rand(0,count($alpha)-1)].mt_rand(100,9000).substr((string)md5(time()),mt_rand(0,10),3);
 return($code);
 
 }
@@ -28,13 +29,16 @@ return(false);
 }
 
 
+
 function checkcon($url){
+	
 
 
 //checks if link exists
 
   $fp=@fopen($url,"r"); 
-  
+ 
+   
 	if($fp) 
 	return true;
 	else
@@ -58,7 +62,7 @@ $query="SELECT * FROM url_short WHERE longurl='$long'";
 if(mysql_num_rows(mysql_query($query,$conn))==1){
      $get_code=mysql_fetch_array(mysql_query($query,$conn));
 	 
-     $message="http://yourshorturlsite.whatever/$get_code[code]";
+     $message="$url_site/$get_code[code]";
 	  	  	
 }
 
@@ -83,7 +87,7 @@ $tim=time();
 //insert into db
 
 mysql_query("INSERT INTO url_short(code,longurl,created) VALUES('$code','$long','$tim')",$conn);
-$message="http://yourshorturlsite.whatever/$code";
+$message="http://$url_site/$code";
 }
 
 
@@ -104,6 +108,8 @@ $message="Url is invalid";
 
 
 }
+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -115,7 +121,7 @@ $message="Url is invalid";
 <style  type="text/css">
 body{
 	font-family:Verdana, Geneva, sans-serif;
-	font-size:12px;
+	font-size:10px;
 margin:auto;	
 
 }
@@ -148,7 +154,7 @@ Shorturl:
 Originallink:
 <?php print @$long;?>
 </p>
-<p>KWESIDEV 2013</p>
+<p >KWESIDEV 2013</p>
 
 </div>
 
