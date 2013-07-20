@@ -83,7 +83,7 @@ $tim=time();
 //insert into db
 
 mysql_query("INSERT INTO url_short(code,longurl,created) VALUES('$code','$long','$tim')",$conn);
-$message="http://kwesidev.web/$code";
+$message="http://yourshorturlsite.whatever/$code";
 }
 
 
