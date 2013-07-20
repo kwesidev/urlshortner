@@ -16,7 +16,9 @@ return($code);
 
 }
 
+
 function urlcheck($url){
+//checks for valid link
 if(preg_match("/^http:\/\/(.*)/",$url)) 
 return(true);
 else
@@ -26,31 +28,26 @@ return(false);
 }
 
 
-
-
 function checkcon($url){
-	try{
-  $fp=fopen($url,"r");
+
+
+//checks if link exists
+
+  $fp=@fopen($url,"r"); 
   
 	if($fp) 
 	return true;
-	}
-	catch(Exception $e){
-		
-    
-  	
-	 return false;
-	}
-
+	else
 	
+     return false;
+	 
 
-	
 }
 
 
 if(isset($_GET['act'])) {
 
-
+//gets longurl
 $long=urldecode($_GET['longurl']);
 if(urlcheck($long)){
 	
@@ -142,6 +139,7 @@ margin:auto;
 <p>
 Shorturl:
 <?php  if(strpos($message,"http://")>-1)
+   
  print "<a href=\"$message\" >$message</a>";
  else
  print $message;
