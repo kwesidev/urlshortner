@@ -103,7 +103,7 @@ margin:auto;
 </form>
 <p>
 Shorturl:
-<?php  if(strpos($message,"http://")==0)
+<?php  if(strpos($message,"http://")>-1)
  print "<a href=\"$message\" >$message</a>";
  else
  print $message;
