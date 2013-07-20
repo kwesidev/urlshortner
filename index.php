@@ -31,7 +31,7 @@ return(false);
 if(isset($_GET['act'])) {
 
 
-$long=urldecode($_GET['longurl']);
+$long=urldecode(trim($_GET['longurl']));
 if(urlcheck($long)){
 $query="SELECT * FROM url_short WHERE longurl='$long'";
 if(mysql_num_rows(mysql_query($query,$conn))==1){
