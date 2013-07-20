@@ -37,7 +37,7 @@ $query="SELECT * FROM url_short WHERE longurl='$long'";
 if(mysql_num_rows(mysql_query($query,$conn))==1){
      $get_code=mysql_fetch_array(mysql_query($query,$conn));
 	 
-     $message="http://kwesh.w/$get_code[code]";
+     $message="http://yourshorturlsite.whatever/$get_code[code]";
 	  	  	
 }
 else
