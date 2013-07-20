@@ -9,7 +9,7 @@ $original="";
 //generate code
 function generate_code(){
   
-//an array of alphabets and some characters
+// characters and strings array
 $alpha=array_merge(range('A','Z'),range('a','z'),array('xx_p','GY_','q_po_lx'));
 $code=$alpha[mt_rand(0,count($alpha)-1)].mt_rand(100,9000).substr((string)time(),-1,3);
 return($code);
