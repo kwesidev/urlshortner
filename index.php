@@ -10,7 +10,7 @@ $original="";
 //generate code
 function generate_code(){
 	
-//an array of alphabets and some characters
+//some random values
 $alpha=array_merge(range('a','z'),array('xx_p','GY_','q_po_lx'));
 $code=$alpha[mt_rand(0,count($alpha)-1)].mt_rand(100,9000).substr((string)md5(time()),mt_rand(0,10),3);
 return($code);
@@ -49,10 +49,10 @@ function checkcon($url){
 }
 
 
-if(isset($_GET['act'])) {
+if(isset($_POST['act'])) {
 
 //gets longurl
-$long=urldecode($_GET['longurl']);
+$long=urldecode($_POST['longurl']);
 if(urlcheck($long)){
 	
 $query="SELECT * FROM url_short WHERE longurl='$long'";
@@ -137,7 +137,7 @@ margin:auto;
 <body>
 <div id="box" align="center">
 <H1>URL SHORTNER</H2>
-<form action=""  method="GET"  >
+<form action=""  method="POST"  >
   <label>Type in Long URL</label>
   <input type="text" name="longurl" maxlength="1000" size="80" value="<?php  print @$long;?>"/>
 <input type="submit" value="ShortenUrl"  name="act"/>
