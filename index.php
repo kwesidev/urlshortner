@@ -6,6 +6,7 @@ include("database.php");
 $url_site="" //yoururlshortner domain e.g shrt.kl
 $message="";
 $original="";
+$long="http://";
 
 //generate code
 function generate_code(){
