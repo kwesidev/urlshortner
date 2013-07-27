@@ -22,9 +22,9 @@ return($code);
 function urlcheck($url){
 //checks for valid link
 if(preg_match("/^http|https:\/\/(.*)/",$url)) 
-return(true);
+   return(true);
 else
-return(false);
+  return(false);
 
 	
 }
@@ -37,14 +37,14 @@ function checkcon($url){
 
 //checks if link exists
 
-  $fp=@fopen($url,"r"); 
+$fp=@fopen($url,"r"); 
  
    
 	if($fp) 
-	return true;
+	  return true;
 	else
 	
-     return false;
+          return false;
 	 
 
 }
@@ -56,7 +56,7 @@ if(isset($_POST['act'])) {
 $long=urldecode($_POST['longurl']);
 if(urlcheck($long)){
 	
-$query="SELECT * FROM url_short WHERE longurl='$long'";
+    $query="SELECT * FROM url_short WHERE longurl='$long'";
 
 
 
@@ -69,43 +69,42 @@ if(mysql_num_rows(mysql_query($query,$conn))==1){
 
 
 else
-if(checkcon($long)){
+    if(checkcon($long)){
 
-{
+    {
 
-$code=generate_code(); //generate code 
+    $code=generate_code(); //generate code 
 
 //check to see if there are some duplicate code
-while(true){
-if(mysql_num_rows(mysql_query("SELECT * FROM url_short WHERE code='$code'",$conn))==0)
-       break;	
+   while(true){
+        if(mysql_num_rows(mysql_query("SELECT * FROM url_short WHERE code='$code'",$conn))==0)
+             break;	
 	   else
-	   $code=generate_code();
+	     $code=generate_code();
 }
-
-$tim=time();  
+   $tim=time();  
 
 //insert into db
 
-mysql_query("INSERT INTO url_short(code,longurl,created) VALUES('$code','$long','$tim')",$conn);
-$message="http://$url_site/$code";
+   mysql_query("INSERT INTO url_short(code,longurl,created) VALUES('$code','$long','$tim')",$conn);
+   $message="http://$url_site/$code";
 }
 
 
-mysql_close($conn);
+  mysql_close($conn);
 
 }
 
 
 else
-$message="Website does not exists";
+ $message="Website does not exists";
 
 }
 
 
 
 else
-$message="Url is invalid";
+ $message="Url is invalid";
 
 
 }
