@@ -12,7 +12,7 @@ $long="http://";
 function generate_code(){
 	
 //some random values
-$alpha=array_merge(range('a','z'),array('xx_p','GY_','q_po_lx'));
+$alpha=array_merge(range('a','z'),range('A','Z'));
 $code=$alpha[mt_rand(0,count($alpha)-1)].mt_rand(100,9000).substr((string)md5(time()),mt_rand(0,10),3);
 return($code);
 
