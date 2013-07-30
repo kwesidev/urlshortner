@@ -53,7 +53,7 @@ $fp=@fopen($url,"r");
 if(isset($_POST['act'])) {
 
 //gets longurl
-$long=urldecode($_POST['longurl']);
+$long=$_POST['longurl'];
 if(urlcheck($long)){
 	
     $query="SELECT * FROM url_short WHERE longurl='$long'";
