@@ -3,7 +3,7 @@
 
 
 include("database.php");
-$url_site="" //yoururlshortner domain e.g shrt.kl
+$url_site=""; //yoururlshortner domain e.g shrt.kl
 $message="";
 $original="";
 $long="http://";
