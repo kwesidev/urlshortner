@@ -1,6 +1,7 @@
 <?php
 //kwesidev@gmail.com
-
+//prevent site from blocking
+ini_set('user_agent',"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36");
 
 include("database.php");
 $url_site=""; //yoururlshortner domain e.g shrt.kl
