@@ -4,4 +4,4 @@ CREATE TABLE `url_short` (
   `longurl` longtext NOT NULL,
   `created` int(10) NOT NULL,
   PRIMARY KEY (`code`(100))
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MYISAM DEFAULT CHARSET=utf8;
