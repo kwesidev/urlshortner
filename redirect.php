@@ -1,11 +1,32 @@
 <?php
-//kwesidev@gmail.com
+//redirect websites to original sites according to the code
+
+//make you put the .htaccess file in the current directory
+
+//(.*) index.php?code=$1;
+
 include("database.php");
 if(isset($_GET['code'])){
-    $code=addslashes($_GET['code']);
-    $query=mysql_query("SELECT * FROM url_short WHERE code='$code'",$conn);
-    $url=mysql_fetch_array($query);
-    if(mysql_num_rows($query)>0)
-                header("Location:".$url['longurl']);	
-	   
+$code=$_GET['code'];
+	
+$row=$db->prepare("SELECT longurl from url_short where code=:code");
+$row->execute(array(":code"=>$code));
+$url=$row->fetch(PDO::FETCH_ASSOC);
+$count=$row->rowCount();
+$row->closeCursor();
+if($count==0) 
+{
+	
+	print "URL does not exists in our database database";	
+	exit;
+	
+}
+
+
+else
+
+header("Location:".$url['longurl']);	
+
+}
+
 ?>
