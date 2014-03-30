@@ -106,8 +106,8 @@ $tim=time();
 //insert into db
 
 
-$queryob=$db->prepare("INSERT INTO url_short(code,longurl,created,access) values(:code,:longurl,:created,:access)");
-$queryob->execute(array("code"=>$code,"longurl"=>$long,"created"=>$tim,"access"=>0));
+$queryob=$db->prepare("INSERT INTO url_short(code,longurl,created) values(:code,:longurl,:created,:access)");
+$queryob->execute(array("code"=>$code,"longurl"=>$long,"created"=>$tim));
 
 $message="$url/$code";
 }
