@@ -1,8 +1,12 @@
 <?php
 	
-	$mysql="mysql:host=host;dbname=dbname;";
-	$user="username";
-	$pass="password";
+	
+	
+	//you can use any database you want 
+	
+	$mysql="mysql:host=yourhost;dbname=yourdatabase;";
+	$user="yourusernameformysql";
+	$pass="yourpassword";
 	
 	try{
 	$db=new PDO($mysql,$user,$pass);
