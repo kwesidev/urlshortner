@@ -17,7 +17,7 @@ $row->closeCursor();
 if($count==0) 
 {
 	
-	print "URL does not exists in our database database";	
+	print "URL does not exists in our database";	
 	exit;
 	
 }
