@@ -64,7 +64,7 @@ Originallink:
 <?php 
 $el=$end-$start;
 
-if($el!=0)
+if($el>0)
 printf("Elapsed : %d seconds",$el);
 
     ?>
