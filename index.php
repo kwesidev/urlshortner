@@ -2,16 +2,24 @@
 //kwesidev@gmail.com
 //prevent site from blocking
 ini_set('user_agent',"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36");
+session_start();
 include_once "database.php";
 include_once "UrlShortner.php";
 $message="";
 $start=time();
+$token=md5(uniqid()+time());
+if(!isset($_SESSION['token']))
+	$_SESSION['token']=$token;
+
 if(isset($_REQUEST['act'])) {
+   if($_POST['token']==$_SESSION['token']){
 	$long=urldecode($_POST['longurl']);
 	$shortner=new UrlShortner($long,$_POST['created']);
 	$message=$shortner->generateNewUrl();
 	$end=time();
-
+}
+	unset($_SESSION['token']);
+	$_SESSION['token']=$token;
 }
 ?>
 <!DOCTYPE html>
@@ -43,6 +51,7 @@ margin:auto;
   <p>
     <label>Type in Long URL</label>
     <input type="text" name="longurl" maxlength="1000" size="80" value="<?php  print @$long;?>"/>
+    <input type="hidden" name="token" value="<?php print $_SESSION['token'];?>"/>
     <input type="hidden" name="created" value="<?php print time();?>" />
     <input type="submit" value="ShortenUrl"  name="act"/>
     
@@ -63,14 +72,11 @@ Originallink:
 
 <?php 
 $el=$end-$start;
-
 if($el>0)
 printf("Elapsed : %d seconds",$el);
-
     ?>
 </p>
 <p >Kwesidev Labs</p>
-
 </div>
 
 </body>
