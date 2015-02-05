@@ -13,10 +13,10 @@ if(!isset($_SESSION['token']))
 
 if(isset($_REQUEST['act'])) {
    if($_POST['token']==$_SESSION['token']){
-	$long=urldecode($_POST['longurl']);
-	$shortner=new UrlShortner($long,$_POST['created']);
-	$message=$shortner->generateNewUrl();
-	$end=time();
+    	$long=urldecode($_POST['longurl']);
+    	$shortner=new UrlShortner($long,$_POST['created']);
+	    $message=$shortner->generateNewUrl();
+    	$end=time();
 }
 	unset($_SESSION['token']);
 	$_SESSION['token']=$token;
@@ -61,9 +61,9 @@ margin:auto;
 Shorturl:
 <?php  if(strpos($message,"http://")>-1)
    
- print "<a href=\"$message\" >$message</a>";
- else
- print $message;
+             print "<a href=\"$message\" >$message</a>";
+        else
+             print $message;
   ?><br />
 <br />
 Originallink:
@@ -73,7 +73,7 @@ Originallink:
 <?php 
 $el=$end-$start;
 if($el>0)
-printf("Elapsed : %d seconds",$el);
+    printf("Elapsed : %d seconds",$el);
     ?>
 </p>
 <p >Kwesidev Labs</p>

@@ -4,26 +4,26 @@
 //(.*) index.php?code=$1;
 include("database.php");
 if(isset($_GET['code'])){
-$code=$_GET['code'];
-$db=db_connect();	
-$row=$db->prepare("SELECT longurl from url_short where code=:code");
-$row->execute(array(":code"=>$code));
-$url=$row->fetch(PDO::FETCH_ASSOC);
-$count=$row->rowCount();
-$row->closeCursor();
-if($count==0) 
-{
+    $code=$_GET['code'];
+    $db=db_connect();	
+    $row=$db->prepare("SELECT longurl from url_short where code=:code");
+    $row->execute(array(":code"=>$code));
+    $url=$row->fetch(PDO::FETCH_ASSOC);
+    $count=$row->rowCount();
+    $row->closeCursor();
+    if($count==0) 
+    {
 	
-	print "URL does not exists in our database";	
-	exit;
+	    print "URL does not exists in our database";	
+    	exit;
 	
-}
+    }
 
 
-else
+    else{
 
-header("Location:".$url['longurl']);	
+        header("Location:".$url['longurl']);	
+    }
 
-}
+    }
 
-?>
