@@ -3,9 +3,9 @@
     function db_connect(){
 		
 	//you can use any database you want 	
-	$mysql="mysql:host=127.0.0.1;dbname=kwesh_db;";
-	$user="root";
-	$pass="root";
+	$mysql="mysql:host=127.0.0.1;dbname=;";
+	$user="";
+	$pass="";
 	
 	try{
 	$db=new PDO($mysql,$user,$pass);
