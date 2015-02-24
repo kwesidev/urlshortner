@@ -35,7 +35,7 @@ class UrlShortner{
     public function __construct($webaddress_,$stamp_){
 
 	    $this->setWebAddress($webaddress_);
-    	    $this->setStamp($stamp);
+    	    $this->setStamp($stamp_);
     }
 
     /**
